@@ -1,6 +1,8 @@
 
 import "./App.css";
+import CreatePost from "./CreatePost";
 import SingleData from "./SingleData";
+import Update from "./Update";
 import { useGetAllPostQuery } from "./sevices/post";
 function App() {
 
@@ -10,6 +12,8 @@ function App() {
 
   return<div className="App">
     <SingleData />
+    <CreatePost />
+    <Update />
   </div>
 }
 

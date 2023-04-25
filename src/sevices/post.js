@@ -27,10 +27,40 @@ export const postApi = createApi({
                     method : 'DELETE'
                   }  
                 }
+            }),
+            createPost : builder.mutation({
+                query : (data)=>{
+                    console.log(data);
+                    return {
+                        url : "posts",
+                        method : "POST",
+                        body : data,
+                        headers : {
+                            authorization : `Bearer ${localStorage.getItem("token")}`,
+                        }
+                    }
+                }
+            }),
+            updatePost : builder.mutation({
+                query : (data)=>{
+                    const {uid , ...restData } = data;
+                    console.log(data);
+                    console.log(uid);
+                    console.log(restData);
+                    return{
+                        url : `posts/${uid}`,
+                        method : "PUT",
+                        body : restData,
+                        headers : {
+                            authorization : `Bearer ${localStorage.getItem("token")}`
+                        }
+
+                    }
+                }
             })
 
     })
 })
 
 
-export const {useGetAllPostQuery , useGetPostWithIdQuery ,useDeletePostMutation } = postApi;
+export const {useGetAllPostQuery , useGetPostWithIdQuery ,useDeletePostMutation , useCreatePostMutation ,useUpdatePostMutation } = postApi;
